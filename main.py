@@ -1,3 +1,3 @@
-import cmu_graphics
+from cmu_graphics import *
 
-cmu_graphics.runApp()
+cmu_graphics.run()
