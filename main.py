@@ -1,6 +1,6 @@
 # Handle central game logic
 
-from cmu_graphics import *
+from common import *
 import graphics
 
 graphics.renderGame()
