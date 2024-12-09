@@ -5,7 +5,7 @@ import graphics
 
 graphics.renderBackground()
 
-def redrawAll():
-    graphics.renderGame()
+# def redrawAll():
+#     graphics.renderGame()
 
 cmu_graphics.run()
