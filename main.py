@@ -9,7 +9,7 @@ physicsHandler = Physics.__singleton__()
 graphics.renderBackground()
 
 for x in range(6):
-    physicsHandler.addParticleToGrid(Sand(Vector2(x, x)))
+    physicsHandler.addParticleToGrid(Sand(Vector2(x, x), Color3(255, 224, 138, 255)))
 
 def onStep():
     physicsHandler.tickAllParticles()
