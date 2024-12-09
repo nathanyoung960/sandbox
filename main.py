@@ -3,6 +3,9 @@
 from common import *
 import graphics
 
-graphics.renderGame()
+graphics.renderBackground()
+
+def redrawAll():
+    graphics.renderGame()
 
 cmu_graphics.run()
