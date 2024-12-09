@@ -2,9 +2,10 @@ from grid import GameGrid
 from common import *
 
 class _MetaParticle:
-    def __init__(this, gridPos: Vector2):
+    def __init__(this, gridPos: Vector2, particleColor: Color3):
         this.pos = gridPos
         this.gridSingleton = GameGrid.__singleton__()
+        this.color = particleColor
 
     # /* Due to the object-oriented nature of Python, ParticleInstance will be the ticked particle. */
     def __onTick__(particleInstance):
