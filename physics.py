@@ -38,6 +38,7 @@ class Physics:
             if (pX == particleX + 1) or (particleX + 1 >= this.grid.extents.x):
                 collisions.append(Vector2(1, 0)) # /* normalized vector for the right */
         
+            print(f"Checking particle Y: {pY}, Checking main particle Y: {particleY}, Is Down Collision = {pY == particleY + 1}")
             if (pY == particleY + 1) or (particleY + 1 >= this.grid.extents.y):
                 collisions.append(Vector2(0, 1)) # /* normalized vector for down */
             

@@ -18,7 +18,7 @@ class _MetaParticle:
         if (particleInstance.useGravity):
             foundCollision = False
             for collisionPos in physicsSingleton.checkForCollisions(particleInstance):
-                if collisionPos.y == 1:
+                if collisionPos.y == -1:
                     foundCollision = True
                     break
 
