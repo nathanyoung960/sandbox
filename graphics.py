@@ -12,7 +12,7 @@ def renderBackground(app):
     drawLine(700,0,700,700,fill='white')
     drawLabel('Walls',750,300,fill='white',size=20)
     drawLabel('Explosives',750,350,fill='white',size=20)
-    drawLabel()
+    drawLabel('Powders',750,400,fill='white',size=20)
 
 def renderGame(app):
     pass
