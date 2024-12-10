@@ -9,8 +9,8 @@ physicsHandler = Physics.__singleton__()
 
 def onAppStart(app):
     for x in range(6):
-        physicsHandler.addParticleToGrid(Sand(Vector2(x, x)))
-        physicsHandler.addParticleToGrid(Glass(Vector2(x+1, x+1)))
+        for y in range(6):
+            physicsHandler.addParticleToGrid(Sand(Vector2(x, y)))
 
 def redrawAll(app):
     graphics.renderBackground(app)
