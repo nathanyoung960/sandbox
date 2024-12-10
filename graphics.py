@@ -4,8 +4,8 @@ canvasSizeX = 800
 canvasSizeY = 800
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
-def renderBackground():
+def renderBackground(app):
     pass
 
-def renderGame():
+def renderGame(app):
     pass

@@ -6,15 +6,18 @@ from physics import Physics
 from particle import *
 
 physicsHandler = Physics.__singleton__()
-graphics.renderBackground()
 
-for x in range(6):
-    physicsHandler.addParticleToGrid(Sand(Vector2(x, x), Color3(255, 224, 138, 255)))
+def onAppStart(app):
+    for x in range(6):
+        physicsHandler.addParticleToGrid(Sand(Vector2(x, x), Color3(255, 224, 138, 255)))
 
-def onStep():
+def redrawAll(app):
+    graphics.renderBackground(app)
+    graphics.renderGame(app)
+
+def onStep(app):
     physicsHandler.tickAllParticles()
-    graphics.renderGame()
 
-app.width = graphics.canvasSizeX
-app.height = graphics.canvasSizeY
-cmu_graphics.run()
+# app.width = graphics.canvasSizeX
+# app.height = graphics.canvasSizeY
+cmu_graphics.runApp(width = graphics.canvasSizeX, height = graphics.canvasSizeY)
