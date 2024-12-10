@@ -6,10 +6,10 @@ canvasSizeY = 800
 particleSize = 5
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
-def renderBackground():
-    Rect(0,0,canvasSizeX,canvasSizeY,fill='black')
-    Line(0,375,400,375,fill='white')
-def renderGame():
+def renderBackground(app):
+    pass
+
+def renderGame(app):
     pass
 
 def renderParticle(particleToRender: _MetaParticle):
