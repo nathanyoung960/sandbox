@@ -3,7 +3,7 @@ from grid import GameGrid
 from common import *
 
 class _MetaParticle:
-    def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
+    def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255), affectedByGravity: bool = True):
         this.pos = gridPos
         this.gridSingleton = GameGrid.__singleton__()
         this.color = particleColor
