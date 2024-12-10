@@ -7,6 +7,7 @@ class _MetaParticle:
         this.pos = gridPos
         this.gridSingleton = GameGrid.__singleton__()
         this.color = particleColor
+        this.useGravity = affectedByGravity
 
     # /* Due to the object-oriented nature of Python, ParticleInstance will be the ticked particle. */
     def __onTick__(particleInstance):
