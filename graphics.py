@@ -1,5 +1,6 @@
 from common import *
 from particle import _MetaParticle
+from physics import Physics
 
 canvasSizeX = 800
 canvasSizeY = 800
@@ -12,10 +13,11 @@ def renderBackground(app):
     drawLine(700,0,700,700,fill='white')
     drawLabel('Walls',750,300,fill='white',size=20)
     drawLabel('Explosives',750,350,fill='white',size=20)
-    drawLabel()
+    #drawLabel()
 
+physicsSingleton = Physics.__singleton__()
 def renderGame(app):
-    pass
-
-def renderParticle(particleToRender: _MetaParticle):
-    Rect(particleToRender.pos.x, particleToRender.pos.y, particleToRender.pos.x+particleSize, particleToRender.pos.y+particleSize, fill=particleToRender.color)
+    for p in physicsSingleton.grid.tileArray:
+        x = p.pos.x*particleSize
+        y = p.pos.y*particleSize
+        drawRect(x, y, particleSize, particleSize, fill=p.color.toCMU())

@@ -16,8 +16,14 @@ class _MetaParticle:
     # /* Handles base logic for particles, i.e. gravity */
     def __onTick__(particleInstance):
         if (particleInstance.useGravity):
-            if not (Vector2(0, 1) in physicsSingleton.checkForCollisions(particleInstance)):
-                particleInstance.pos.y = particleInstance.pos.y - 1
+            foundCollision = False
+            for collisionPos in physicsSingleton.checkForCollisions(particleInstance):
+                if collisionPos.y == 1:
+                    foundCollision = True
+                    break
+
+            if (not foundCollision):
+                particleInstance.pos.y = particleInstance.pos.y + 1
 
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
@@ -25,7 +31,6 @@ class Sand(_MetaParticle):
         this.color = Color3(255, 224, 138, 255)
 
     def __onTick__(particleInstance):
-        print(f"I've been ticked and my position is ({particleInstance.pos.x}, {particleInstance.pos.y})")
         return super().__onTick__()
     
 class Glass(_MetaParticle):
