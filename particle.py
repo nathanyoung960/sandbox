@@ -1,6 +1,9 @@
 from common import Color3, Vector2
 from grid import GameGrid
 from common import *
+from physics import Physics
+
+physicsSingleton = Physics.__singleton__()
 
 class _MetaParticle:
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255), affectedByGravity: bool = True):
@@ -10,8 +13,11 @@ class _MetaParticle:
         this.useGravity = affectedByGravity
 
     # /* Due to the object-oriented nature of Python, ParticleInstance will be the ticked particle. */
+    # /* Handles base logic for particles, i.e. gravity */
     def __onTick__(particleInstance):
-        pass
+        if (particleInstance.useGravity):
+            if not (Vector2(0, 1) in physicsSingleton.checkForCollisions(particleInstance)):
+                particleInstance.pos.y = particleInstance.pos.y - 1
 
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):

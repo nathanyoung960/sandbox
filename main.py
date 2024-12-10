@@ -21,4 +21,4 @@ def onStep(app):
 
 # app.width = graphics.canvasSizeX
 # app.height = graphics.canvasSizeY
-cmu_graphics.runApp(width = graphics.canvasSizeX, height = graphics.canvasSizeY)
+runApp(width = graphics.canvasSizeX, height = graphics.canvasSizeY)
