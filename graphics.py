@@ -7,7 +7,8 @@ particleSize = 5
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
 def renderBackground(app):
-    pass
+    drawRect(0, 0, canvasSizeX, canvasSizeY, fill="black")
+    drawLine(0,750,800,750,fill='white')
 
 def renderGame(app):
     pass
