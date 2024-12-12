@@ -7,7 +7,7 @@ canvasSizeY = 800
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
 def renderBackground(app):
-    drawRect(0, 0, canvasSizeX, canvasSizeY, fill='magenta')
+    drawRect(0, 0, canvasSizeX, canvasSizeY, fill='black')
     drawLine(0,700,700,700,fill='white')
     drawLine(700,0,700,700,fill='white')
     drawLabel('Walls',750,300,fill='white',size=20)
