@@ -1,10 +1,9 @@
 from common import *
 from particle import _MetaParticle
-from physics import Physics
+from physics import Physics, particleSize
 
 canvasSizeX = 800
 canvasSizeY = 800
-particleSize = 5
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
 def renderBackground(app):
