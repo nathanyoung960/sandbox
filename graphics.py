@@ -5,9 +5,9 @@ from physics import Physics, particleSize
 canvasSizeX = 800
 canvasSizeY = 800
 #aspectRatio = (canvasSizeX/canvasSizeY)
-color=['magenta','red']
+
 def renderBackground(app):
-    drawRect(0, 0, canvasSizeX, canvasSizeY, fill=color)
+    drawRect(0, 0, canvasSizeX, canvasSizeY, fill='magenta')
     drawLine(0,700,700,700,fill='white')
     drawLine(700,0,700,700,fill='white')
     drawLabel('Walls',750,300,fill='white',size=20)
