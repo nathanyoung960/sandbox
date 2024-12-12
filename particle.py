@@ -1,7 +1,7 @@
 from common import Color3, Vector2
 from grid import GameGrid
 from common import *
-from physics import Physics
+from physics import Physics, CollDir
 
 physicsSingleton = Physics.__singleton__()
 
@@ -16,14 +16,15 @@ class _MetaParticle:
     # /* Handles base logic for particles, i.e. gravity */
     def __onTick__(particleInstance):
         if (particleInstance.useGravity):
-            foundCollision = False
-            for collisionPos in physicsSingleton.checkForCollisions(particleInstance):
-                if collisionPos.y == 1:
-                    foundCollision = True
-                    break
-
-            if (not foundCollision):
+            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DOWN) == False):
                 particleInstance.pos.y = particleInstance.pos.y + 1
+            else:
+                if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_RIGHT_DOWN) == False):
+                    particleInstance.pos.y = particleInstance.pos.y + 1
+                    particleInstance.pos.x = particleInstance.pos.x + 1
+                elif (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_LEFT_DOWN) == False):
+                    particleInstance.pos.y = particleInstance.pos.y + 1
+                    particleInstance.pos.x = particleInstance.pos.x - 1
 
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
