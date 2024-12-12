@@ -8,11 +8,12 @@ from particle import *
 physicsHandler = Physics.__singleton__()
 
 def onAppStart(app):
-    # for x in range(6):
-    #     for y in range(50, 52):
-    #         physicsHandler.addParticleToGrid(Sand(Vector2(x, y)))
-    physicsHandler.addParticleToGrid(Sand(Vector2(50, 60)))
-    physicsHandler.addParticleToGrid(Sand(Vector2(50, 50)))
+    for x in range(6):
+        for y in range(6):
+            physicsHandler.addParticleToGrid(Sand(Vector2(x, y*2)))
+    # physicsHandler.addParticleToGrid(Sand(Vector2(50, 60)))
+    # physicsHandler.addParticleToGrid(Sand(Vector2(50, 50)))
+    # physicsHandler.addParticleToGrid(Sand(Vector2(50, 40)))
 
 def redrawAll(app):
     graphics.renderBackground(app)
