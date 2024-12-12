@@ -8,11 +8,14 @@ from particle import *
 physicsHandler = Physics.__singleton__()
 
 def onAppStart(app):
+    app.stepsPerSecond = 500
+    app.setMaxShapeCount(5000)
     b = 5
-    s = 25
+    s = 30
     for x in range(b, s):
         for y in range(b, s):
             physicsHandler.addParticleToGrid(Sand(Vector2(x, y)))
+            
 def redrawAll(app):
     graphics.renderBackground(app)
     graphics.renderGame(app)

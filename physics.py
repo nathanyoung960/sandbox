@@ -52,6 +52,11 @@ class Physics:
             pX = round(p.pos.x)
             pY = round(p.pos.y)
 
+            if (pX - particleX >= 2 or particleX - pX <= -2):
+                continue
+            if (pY - particleY >= 2 or particleY - pY <= -2):
+                continue
+
             if ((pY - particleY == dir.value.y) and (pX - particleX == dir.value.x)) or outOfBounds(particle.pos, this.grid, dir):
                 return True
         return False
@@ -61,7 +66,7 @@ class Physics:
     def __singleton__():
         return singleton
 
-chunkSize = 15
+chunkSize = 250
 def chunked_list(lst, chunk_size: int = chunkSize):
     for i in range(0, len(lst), chunk_size):
         yield lst[i:i + chunk_size]
@@ -70,9 +75,9 @@ def dispatchThreads(this: Physics):
     def tickAssignedParticles(this: Physics, particleList):
         for p in particleList:
             p.__onTick__()
-            time.sleep(random.uniform(0, 1.4))
+            time.sleep(random.uniform(0.005, 0.415))
 
-    for list in chunked_list(this.grid.tileArray):
+    for list in chunked_list(this.grid.tileArray, len(this.grid.tileArray)//50):
         threading.Thread(target=tickAssignedParticles, args=(this, list)).start()
 
 singleton = Physics()
