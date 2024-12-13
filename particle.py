@@ -16,13 +16,8 @@ def clamp(x: int, min: int, max: int):
 class _MetaParticle:
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255), affectedByGravity: bool = True, colorRandomness: int = 5):
         this.pos = gridPos
+        this.color = particleColor
         this.gridSingleton = GameGrid.__singleton__()
-        this.color = Color3(
-            clamp(particleColor.r + random.randint(-colorRandomness, colorRandomness), 0, 255),
-            clamp(particleColor.g + random.randint(-colorRandomness, colorRandomness), 0, 255),
-            clamp(particleColor.b + random.randint(-colorRandomness, colorRandomness), 0, 255)
-        )
-        print(f"original color R: {particleColor.g} modified: {this.color.g}")
         this.useGravity = affectedByGravity
 
     # /* Due to the object-oriented nature of Python, ParticleInstance will be the ticked particle. */
@@ -39,18 +34,52 @@ class _MetaParticle:
                     particleInstance.pos.y = particleInstance.pos.y + 1
                     particleInstance.pos.x = particleInstance.pos.x - 1
 
+    def setColor(this, color: Color3, randomness: int = 5):
+        this.color = Color3(
+            clamp(color.r + random.randint(-randomness, randomness), 0, 255),
+            clamp(color.g + random.randint(-randomness, randomness), 0, 255),
+            clamp(color.b + random.randint(-randomness, randomness), 0, 255)
+        )
+
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
         super().__init__(gridPos, particleColor)
-        this.color = Color3(255, 224, 138, 255)
+        this.setColor(Color3(255, 224, 138, 255), 15)
 
     def __onTick__(particleInstance):
         return super().__onTick__()
     
+class Water(_MetaParticle):
+    def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 255, 255), colorRandomness: int = 5):
+        super().__init__(gridPos, particleColor, False, colorRandomness)
+        this.setColor(particleColor, 15)
+
+    def __onTick__(particleInstance):
+        super().__onTick__()
+        leftOrRight = random.randint(0, 2)
+        
+        if (leftOrRight == 0):
+            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.RIGHT) == False):
+                particleInstance.pos.x = particleInstance.pos.x + 1
+        elif (leftOrRight == 1):
+            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.LEFT) == False):
+                particleInstance.pos.x = particleInstance.pos.x - 1
+        else:
+            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_RIGHT_DOWN) == False):
+                particleInstance.pos.y = particleInstance.pos.y + 1
+                particleInstance.pos.x = particleInstance.pos.x + 1
+            elif (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_LEFT_DOWN) == False):
+                particleInstance.pos.y = particleInstance.pos.y + 1
+                particleInstance.pos.x = particleInstance.pos.x - 1
+            else:
+                if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DOWN) == False):
+                    particleInstance.pos.y = particleInstance.pos.y + 1
+    
+    
 class Glass(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
-        super().__init__(gridPos, particleColor)
-        this.color = Color3(230, 241, 242, 255)
+        super().__init__(gridPos, particleColor, affectedByGravity=False)
+        this.setColor(Color3(230, 241, 242, 255))
 
     def __onTick__(particleInstance):
         return super().__onTick__()
