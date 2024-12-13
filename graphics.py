@@ -10,11 +10,17 @@ def renderBackground(app):
     drawRect(0, 0, canvasSizeX, canvasSizeY, fill='black')
     drawLine(0,700,700,700,fill='white')
     drawLine(700,0,700,700,fill='white')
-    drawLabel('Walls',750,300,fill='white',size=20)
-    drawLabel('Explosives',750,350,fill='white',size=20)
-    drawLabel('Powders',750,400,fill='white',size=20)
-    drawLabel('Gases',750,450,fill='white',size=20)
-    drawRect(50,725,50,50,fill='grey',visible=False)
+    
+    
+    drawLabel('Gases',755,435,fill='white',size=20)
+    if (app.drawWall1):
+        drawRect(50,725,50,50,fill='grey')
+    wall=drawRect(720,250,70,70,fill='black',border='white')
+    walls=drawLabel('Walls',755,285,fill='white',size=20)
+    if (app.drawLiquid1):
+        drawRect(50,725,50,50,fill='blue')
+    liquid1=drawRect(720,350,70,70,fill='black',border='white')
+    drawLabel('liquid',755,385,fill='white',size=20)
 physicsSingleton = Physics.__singleton__()
 def renderGame(app):
     for p in physicsSingleton.grid.tileArray:
