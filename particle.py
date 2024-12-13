@@ -56,24 +56,23 @@ class Water(_MetaParticle):
 
     def __onTick__(particleInstance):
         super().__onTick__()
-        leftOrRight = random.randint(0, 2)
-        
-        if (leftOrRight == 0):
-            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.RIGHT) == False):
-                particleInstance.pos.x = particleInstance.pos.x + 1
-        elif (leftOrRight == 1):
-            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.LEFT) == False):
-                particleInstance.pos.x = particleInstance.pos.x - 1
+        if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_RIGHT_DOWN) == False):
+            particleInstance.pos.y = particleInstance.pos.y + 1
+            particleInstance.pos.x = particleInstance.pos.x + 1
+        elif (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_LEFT_DOWN) == False):
+            particleInstance.pos.y = particleInstance.pos.y + 1
+            particleInstance.pos.x = particleInstance.pos.x - 1
         else:
-            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_RIGHT_DOWN) == False):
+            if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DOWN) == False):
                 particleInstance.pos.y = particleInstance.pos.y + 1
-                particleInstance.pos.x = particleInstance.pos.x + 1
-            elif (physicsSingleton.checkForCollisions(particleInstance, CollDir.DIAGONAL_LEFT_DOWN) == False):
-                particleInstance.pos.y = particleInstance.pos.y + 1
-                particleInstance.pos.x = particleInstance.pos.x - 1
             else:
-                if (physicsSingleton.checkForCollisions(particleInstance, CollDir.DOWN) == False):
-                    particleInstance.pos.y = particleInstance.pos.y + 1
+                leftOrRight = random.randint(0, 1)
+                if (leftOrRight == 0):
+                    if (physicsSingleton.checkForCollisions(particleInstance, CollDir.RIGHT) == False):
+                        particleInstance.pos.x = particleInstance.pos.x + 1
+                else:
+                    if (physicsSingleton.checkForCollisions(particleInstance, CollDir.LEFT) == False):
+                        particleInstance.pos.x = particleInstance.pos.x - 1
     
     
 class Glass(_MetaParticle):

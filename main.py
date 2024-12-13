@@ -2,7 +2,7 @@
 
 from common import *
 import graphics
-from physics import Physics
+from physics import Physics, outOfBounds, CollDir, particleSize
 from particle import *
 
 physicsHandler = Physics.__singleton__()
@@ -12,7 +12,7 @@ def onAppStart(app):
     app.mouseY = 0
     app.cursorRadius = 15
 
-    app.stepsPerSecond = 500
+    app.stepsPerSecond = 15
     app.setMaxShapeCount(5000)
     b = 5
     s = 30
@@ -24,7 +24,7 @@ def redrawAll(app):
     graphics.renderBackground(app)
     graphics.renderGame(app)
     
-    drawCircle(app.mouseX, app.mouseY, app.cursorRadius, fill=None, border="gray")
+    drawCircle(app.mouseX, app.mouseY, app.cursorRadius*particleSize, fill=None, border="gray")
 
 def onStep(app):
     physicsHandler.tickAllParticles()
@@ -39,7 +39,9 @@ def onMousePress(app, mouseX, mouseY):
 
     for x in range(app.cursorRadius):
         for y in range(app.cursorRadius):
-            physicsHandler.addParticleToGrid(Water(Vector2(x+(mouseX//5), y+(mouseY//5))))
+            pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
+            if (not outOfBounds(pos, physicsHandler.grid, CollDir.CENTER)):
+                physicsHandler.addParticleToGrid(Water(pos))
 
 # app.width = graphics.canvasSizeX
 # app.height = graphics.canvasSizeY

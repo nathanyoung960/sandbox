@@ -4,7 +4,7 @@ from enum import Enum
 import threading
 import random
 import time
-particleSize = 5
+particleSize = 15
 
 class CollDir(Enum):
     CENTER = Vector2(0, 0)
@@ -49,8 +49,8 @@ class Physics:
 
             # /* helper variables because python hates typecasting */
             # /* python typesafety itself is a oxymoron */
-            pX = round(p.pos.x)
-            pY = round(p.pos.y)
+            pX = p.pos.x
+            pY = p.pos.y
 
             if (pX - particleX >= 2 or particleX - pX <= -2):
                 continue
@@ -66,7 +66,7 @@ class Physics:
     def __singleton__():
         return singleton
 
-chunkSize = 250
+chunkSize = 15
 def chunked_list(lst, chunk_size: int = chunkSize):
     for i in range(0, len(lst), chunk_size):
         yield lst[i:i + chunk_size]
@@ -75,9 +75,9 @@ def dispatchThreads(this: Physics):
     def tickAssignedParticles(this: Physics, particleList):
         for p in particleList:
             p.__onTick__()
-            time.sleep(random.uniform(0.005, 0.415))
+            time.sleep(random.uniform(0.005, 0.2))
 
-    for list in chunked_list(this.grid.tileArray, len(this.grid.tileArray)//50):
+    for list in chunked_list(this.grid.tileArray):
         threading.Thread(target=tickAssignedParticles, args=(this, list)).start()
 
 singleton = Physics()
