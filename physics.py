@@ -1,7 +1,10 @@
 from grid import GameGrid
 from common import Vector2
 from enum import Enum
-particleSize = 10
+import threading
+import random
+import time
+particleSize = 15
 
 class CollDir(Enum):
     CENTER = Vector2(0, 0)
@@ -26,8 +29,7 @@ class Physics:
         self.grid = GameGrid.__singleton__()
 
     def tickAllParticles(this):
-        for p in this.grid.tileArray:
-            p.__onTick__()
+        dispatchThreads(this)
 
     def addParticleToGrid(this, particle):
         this.grid.tileArray.append(particle)
@@ -47,8 +49,13 @@ class Physics:
 
             # /* helper variables because python hates typecasting */
             # /* python typesafety itself is a oxymoron */
-            pX = round(p.pos.x)
-            pY = round(p.pos.y)
+            pX = p.pos.x
+            pY = p.pos.y
+
+            if (pX - particleX >= 2 or particleX - pX <= -2):
+                continue
+            if (pY - particleY >= 2 or particleY - pY <= -2):
+                continue
 
             if ((pY - particleY == dir.value.y) and (pX - particleX == dir.value.x)) or outOfBounds(particle.pos, this.grid, dir):
                 return True
@@ -58,5 +65,19 @@ class Physics:
     @staticmethod
     def __singleton__():
         return singleton
+
+chunkSize = 15
+def chunked_list(lst, chunk_size: int = chunkSize):
+    for i in range(0, len(lst), chunk_size):
+        yield lst[i:i + chunk_size]
+
+def dispatchThreads(this: Physics):
+    def tickAssignedParticles(this: Physics, particleList):
+        for p in particleList:
+            p.__onTick__()
+            time.sleep(random.uniform(0.005, 0.2))
+
+    for list in chunked_list(this.grid.tileArray):
+        threading.Thread(target=tickAssignedParticles, args=(this, list)).start()
 
 singleton = Physics()
