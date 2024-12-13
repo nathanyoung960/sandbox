@@ -12,7 +12,7 @@ def onAppStart(app):
     app.mouseY = 0
     app.cursorRadius = 15
 
-    app.stepsPerSecond = 15
+    app.stepsPerSecond = 5
     app.setMaxShapeCount(5000)
     b = 5
     s = 30
