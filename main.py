@@ -10,7 +10,7 @@ physicsHandler = Physics.__singleton__()
 def onAppStart(app):
     app.mouseX = 0
     app.mouseY = 0
-    app.cursorRadius = 5
+    app.cursorRadius = 15
 
     app.setMaxShapeCount(5000)
     b = 5
@@ -44,10 +44,12 @@ def onMousePress(app, mouseX, mouseY, button):
                 if (particle != None):
                     particle.destroy()
     else:
-        for x in range(app.cursorRadius):
-            for y in range(app.cursorRadius):
-                pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
-                if (not outOfBounds(pos, physicsHandler.grid, CollDir.CENTER)) and (physicsSingleton.getParticleAtPos(pos) == None):
-                    physicsHandler.addParticleToGrid(Water(pos))
+        app.drawLiquid1=False
+
+    for x in range(app.cursorRadius):
+        for y in range(app.cursorRadius):
+            pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
+            if (not outOfBounds(pos, physicsHandler.grid, CollDir.CENTER)):
+                physicsHandler.addParticleToGrid(Water(pos))
 
 runApp(width = graphics.canvasSizeX, height = graphics.canvasSizeY)
