@@ -41,6 +41,10 @@ class _MetaParticle:
             clamp(color.b + random.randint(-randomness, randomness), 0, 255)
         )
 
+    def destroy(this):
+        this.gridSingleton.tileArray.remove(this)
+        del this
+
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
         super().__init__(gridPos, particleColor)
