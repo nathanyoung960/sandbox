@@ -10,7 +10,7 @@ canvasSizeY = 800
 def createShapes(app):
     app.sandButton=_Rect(200,725,50,50,fill=Color3(255, 224, 138, 255).toCMU())
     app.waterButton=_Rect(50,725,50,50,fill='blue')
-    #app.glassButton=_Rect(125,725,50,50)
+    app.glassButton=_Rect(125,725,50,50,fill=Color3(230, 241, 242, 255).toCMU())
 def renderBackground(app):
     drawRect(0, 0, canvasSizeX, canvasSizeY, fill='black')
     drawLine(0,700,700,700,fill='white')

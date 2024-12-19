@@ -68,6 +68,8 @@ def onMousePress(app, mouseX, mouseY, button):
         app.selectedElement='SAND'
     if (app.waterButton.hits(mouseX,mouseY)):
         app.selectedElement='WATR'
+    if (app.glassButton.hits(mouseX,mouseY)):
+        app.selectedElement='GLAS'
     if (app.drawCursor):
         performCursor(app, mouseX, mouseY, button)
     
