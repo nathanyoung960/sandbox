@@ -11,6 +11,7 @@ def onAppStart(app):
     app.mouseX = 0
     app.mouseY = 0
     app.cursorRadius = 15
+    app.drawWall = False
 
     app.stepsPerSecond = 15
     app.setMaxShapeCount(5000)
@@ -37,16 +38,7 @@ def onMousePress(app, mouseX, mouseY):
     app.mouseX = mouseX
     app.mouseY = mouseY
 
-    if (mouseX >= 720) and (mouseX <= 790) and (mouseY >= 250) and (mouseY <= 320):
-        print("Walls")
-        app.drawWall1=True
-    else:
-        app.drawWall1=False
-    if (mouseX >= 720) and (mouseX <= 790) and (mouseY >= 350) and (mouseY <= 420):
-        print("Liquids")
-        app.drawLiquid1=True
-    else:
-        app.drawLiquid1=False
+
 
     for x in range(app.cursorRadius):
         for y in range(app.cursorRadius):

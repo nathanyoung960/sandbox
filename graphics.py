@@ -12,15 +12,10 @@ def renderBackground(app):
     drawLine(700,0,700,700,fill='white')
     
     
-    drawLabel('Gases',755,435,fill='white',size=20)
-    if (app.drawWall1):
-        drawRect(50,725,50,50,fill='grey')
-    wall=drawRect(720,250,70,70,fill='black',border='white')
-    walls=drawLabel('Walls',755,285,fill='white',size=20)
-    if (app.drawLiquid1):
-        drawRect(50,725,50,50,fill='blue')
-    liquid1=drawRect(720,350,70,70,fill='black',border='white')
-    drawLabel('liquid',755,385,fill='white',size=20)
+    drawRect(200,725,50,50,fill=Color3(0, 0, 0, 255).toCMU())
+    drawRect(125,725,50,50,fill=Color3(255, 224, 138, 255).toCMU())
+    drawRect(50,725,50,50,fill='blue')
+
 physicsSingleton = Physics.__singleton__()
 def renderGame(app):
     for p in physicsSingleton.grid.tileArray:
