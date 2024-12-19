@@ -13,6 +13,8 @@ def onAppStart(app):
     app.cursorRadius = 5
     app.selectedElement = "WATR" # /* SAND, WATR, GLAS */
 
+    graphics.createShapes(app)
+
     app.setMaxShapeCount(5000)
     b = 5
     s = 30
