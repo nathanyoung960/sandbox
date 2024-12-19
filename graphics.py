@@ -11,16 +11,11 @@ def createShapes(app):
     _Rect(500, 500, 200, 200, fill='white')
     app.sandButton=_Rect(200,725,50,50,fill=Color3(255, 224, 138, 255).toCMU())
     app.waterButton=_Rect(50,725,50,50,fill='blue')
+    #app.glassButton=_Rect(125,725,50,50)
 def renderBackground(app):
     drawRect(0, 0, canvasSizeX, canvasSizeY, fill='black')
     drawLine(0,700,700,700,fill='white')
     drawLine(700,0,700,700,fill='white')
-    
-    
-
-    
-    drawRect(50,725,50,50,fill='blue')
-
     for shape in createdShapes:
         if (type(shape).__name__ == "_Rect"):
             if (shape.fill != None) and (shape.visible):
