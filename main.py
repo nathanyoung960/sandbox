@@ -65,10 +65,12 @@ def onMousePress(app, mouseX, mouseY, button):
     app.mouseX = mouseX
     app.mouseY = mouseY
     if (app.sandButton.hits(mouseX,mouseY)):
-        app.selected='SAND'
+        print("YAY")
+        app.selectedElement='SAND'
     else:
-        app.selected='WATR'
-    performCursor(app, mouseX, mouseY, button)
+        app.selectedElement='WATR'
+    if (app.drawCursor):
+        performCursor(app, mouseX, mouseY, button)
     
 def onMouseDrag(app, mouseX, mouseY, buttons):
     app.mouseX = mouseX
