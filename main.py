@@ -32,10 +32,7 @@ def onMouseMove(app, mouseX, mouseY):
     app.mouseX = mouseX
     app.mouseY = mouseY
 
-def onMousePress(app, mouseX, mouseY, button):
-    app.mouseX = mouseX
-    app.mouseY = mouseY
-
+def performCursor(app, mouseX, mouseY, button):
     if button == 2:
         for x in range(app.cursorRadius):
             for y in range(app.cursorRadius):
@@ -49,5 +46,16 @@ def onMousePress(app, mouseX, mouseY, button):
                 pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
                 if (not outOfBounds(pos, physicsHandler.grid, CollDir.CENTER)) and (physicsSingleton.getParticleAtPos(pos) == None):
                     physicsHandler.addParticleToGrid(Water(pos))
+
+def onMousePress(app, mouseX, mouseY, button):
+    app.mouseX = mouseX
+    app.mouseY = mouseY
+    performCursor(app, mouseX, mouseY, button)
+
+def onMouseDrag(app, mouseX, mouseY, buttons):
+    app.mouseX = mouseX
+    app.mouseY = mouseY
+    if (len(buttons) == 1):
+        performCursor(app, mouseX, mouseY, buttons[0])
 
 runApp(width = graphics.canvasSizeX, height = graphics.canvasSizeY)
