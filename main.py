@@ -11,6 +11,7 @@ def onAppStart(app):
     app.mouseX = 0
     app.mouseY = 0
     app.cursorRadius = 5
+    app.selectedElement = "WATR" # /* SAND, WATR, GLAS */
 
     app.setMaxShapeCount(5000)
     b = 5
@@ -45,7 +46,12 @@ def performCursor(app, mouseX, mouseY, button):
             for y in range(app.cursorRadius):
                 pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
                 if (not outOfBounds(pos, physicsHandler.grid, CollDir.CENTER)) and (physicsSingleton.getParticleAtPos(pos) == None):
-                    physicsHandler.addParticleToGrid(Water(pos))
+                    if (app.selectedElement == "WATR"):
+                        physicsHandler.addParticleToGrid(Water(pos))
+                    elif (app.selectedElement == "SAND"):
+                        physicsHandler.addParticleToGrid(Sand(pos))
+                    else:
+                        physicsHandler.addParticleToGrid(Glass(pos))
 
 def onMousePress(app, mouseX, mouseY, button):
     app.mouseX = mouseX

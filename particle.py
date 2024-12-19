@@ -14,11 +14,12 @@ def clamp(x: int, min: int, max: int):
     return x
 
 class _MetaParticle:
-    def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255), affectedByGravity: bool = True, colorRandomness: int = 5):
+    def __init__(this, gridPos: Vector2, name: str, particleColor: Color3 = Color3(0, 0, 0, 255), affectedByGravity: bool = True, colorRandomness: int = 5):
         this.pos = gridPos
         this.color = particleColor
         this.gridSingleton = GameGrid.__singleton__()
         this.useGravity = affectedByGravity
+        this.name = name
 
     # /* Due to the object-oriented nature of Python, ParticleInstance will be the ticked particle. */
     # /* Handles base logic for particles, i.e. gravity */
@@ -48,6 +49,7 @@ class _MetaParticle:
 class Sand(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
         super().__init__(gridPos, particleColor)
+        this.name = "SAND"
         this.setColor(Color3(255, 224, 138, 255), 15)
 
     def __onTick__(particleInstance):
@@ -56,6 +58,7 @@ class Sand(_MetaParticle):
 class Water(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 255, 255), colorRandomness: int = 5):
         super().__init__(gridPos, particleColor, False, colorRandomness)
+        this.name = "WATR"
         this.setColor(particleColor, 15)
 
     def __onTick__(particleInstance):
@@ -82,6 +85,7 @@ class Water(_MetaParticle):
 class Glass(_MetaParticle):
     def __init__(this, gridPos: Vector2, particleColor: Color3 = Color3(0, 0, 0, 255)):
         super().__init__(gridPos, particleColor, affectedByGravity=False)
+        this.name = "GLAS"
         this.setColor(Color3(230, 241, 242, 255))
 
     def __onTick__(particleInstance):
