@@ -8,7 +8,6 @@ canvasSizeY = 800
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
 def createShapes(app):
-    _Rect(500, 500, 200, 200, fill='white')
     app.sandButton=_Rect(200,725,50,50,fill=Color3(255, 224, 138, 255).toCMU())
     app.waterButton=_Rect(50,725,50,50,fill='blue')
 def renderBackground(app):
