@@ -57,7 +57,7 @@ def onMousePress(app, mouseX, mouseY, button):
     app.mouseX = mouseX
     app.mouseY = mouseY
     performCursor(app, mouseX, mouseY, button)
-
+    
 def onMouseDrag(app, mouseX, mouseY, buttons):
     app.mouseX = mouseX
     app.mouseY = mouseY
