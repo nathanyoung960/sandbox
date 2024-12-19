@@ -2,12 +2,13 @@ createdShapes = []
 
 class _Rect():
     # /* X and Y are the coordinates for the TOP LEFT CORNER */
-    def __init__(this, x: int, y: int, width: int, height: int, fill = None):
+    def __init__(this, x: int, y: int, width: int, height: int, fill = None, visible: bool = True):
         this.x = x
         this.y = y
         this.width = width
         this.height = height
         this.fill = fill
+        this.visible = visible
         createdShapes.append(this)
 
     def hits(this, posX: int, posY: int) -> bool:
