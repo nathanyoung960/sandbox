@@ -36,7 +36,7 @@ class Physics:
 
     def getParticleAtPos(this, pos: Vector2):
         for p in this.grid.tileArray:
-            if (p.pos == pos):
+            if (p.pos.x == pos.x) and (p.pos.y == pos.y):
                 return p
         return None
 

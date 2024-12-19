@@ -42,7 +42,7 @@ def onMousePress(app, mouseX, mouseY, button):
                 pos = Vector2(x+(mouseX//particleSize), y+(mouseY//particleSize))
                 particle = physicsSingleton.getParticleAtPos(pos)
                 if (particle != None):
-                    particle
+                    particle.destroy()
     else:
         for x in range(app.cursorRadius):
             for y in range(app.cursorRadius):
