@@ -22,7 +22,7 @@ def renderBackground(app):
 
     for shape in createdShapes:
         if (type(shape).__name__ == "_Rect"):
-            if (shape.fill != None):
+            if (shape.fill != None) and (shape.visible):
                 drawRect(shape.x, shape.y, shape.width, shape.height, fill=shape.fill)
 
 physicsSingleton = Physics.__singleton__()
