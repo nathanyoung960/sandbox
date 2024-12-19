@@ -34,6 +34,12 @@ class Physics:
     def addParticleToGrid(this, particle):
         this.grid.tileArray.append(particle)
 
+    def getParticleAtPos(this, pos: Vector2):
+        for p in this.grid.tileArray:
+            if (p.pos == pos):
+                return p
+        return None
+
     def checkForCollisions(this, particle, dir: Vector2) -> bool:
         # temporary code
         # TODO: make it actually easy to read
