@@ -8,7 +8,7 @@ canvasSizeY = 800
 #aspectRatio = (canvasSizeX/canvasSizeY)
 
 def createShapes(app):
-    _Rect(500, 500, 200, 200, fill='white')
+    pass
 
 def renderBackground(app):
     drawRect(0, 0, canvasSizeX, canvasSizeY, fill='black')
